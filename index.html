@@ -8,7 +8,7 @@
        
        系统开发：Yaoshan Wang
        联系方式：wangyueshan@eurasia.edu
-       最后更新：2024-01-08
+       最后更新：2024-12-18
     -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1108,17 +1108,15 @@
 
         // 修改初始化数据函数
         function initializeData() {
-            // 先检查 localStorage 中是否已有设备数据
+            // 检查 localStorage 中是否已有设备数据
             const savedDevices = localStorage.getItem('devices');
             if (savedDevices) {
                 devices = JSON.parse(savedDevices);
-                initDeviceGrid();
-                return;
+            } else {
+                // 如果没有保存的数据，使用初始设备列表
+                devices = [...initialDevices];
+                localStorage.setItem('devices', JSON.stringify(devices));
             }
-
-            // 如果没有保存的数据，使用初始设备列表
-            devices = [...initialDevices];
-            localStorage.setItem('devices', JSON.stringify(devices));
             initDeviceGrid();
         }
 
